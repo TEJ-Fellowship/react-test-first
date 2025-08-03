@@ -1,0 +1,170 @@
+.container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.leftPanel, .rightPanel {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.title {
+  margin: 0 0 1.5rem 0;
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+
+
+.input, .searchInput {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+.input:focus, .searchInput:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.button, .toggleButton {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-right: 0.5rem;
+}
+
+.button:hover, .toggleButton:hover {
+  background: #5a67d8;
+  transform: translateY(-1px);
+}
+
+.buttonUpdate {
+  background: #48bb78;
+}
+
+.buttonUpdate:hover {
+  background: #38a169;
+}
+
+.searchContainer {
+  margin-bottom: 1.5rem;
+}
+
+.toggleButton {
+  margin-bottom: 1rem;
+}
+
+.peopleList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.personItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+  transition: transform 0.2s ease;
+}
+
+.personItem:hover {
+  transform: translateX(4px);
+}
+
+.personInfo {
+  flex: 1;
+}
+
+.personName {
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 0.25rem 0;
+}
+
+.personPhone {
+  color: #666;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.personActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.editButton, .deleteButton {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.editButton {
+  background: #fbbf24;
+  color: #1f2937;
+}
+
+.editButton:hover {
+  background: #f59e0b;
+}
+
+.deleteButton {
+  background: #ef4444;
+  color: white;
+}
+
+.deleteButton:hover {
+  background: #dc2626;
+}
+
+.noResults {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .personItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+} 
