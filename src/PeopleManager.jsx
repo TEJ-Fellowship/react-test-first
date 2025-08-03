@@ -26,23 +26,36 @@ function PeopleManager() {
   }, []);
 
   // TODO: Implement search filtering
-  // const filteredPeople = people.filter(person =>
-  //   some code here...
-  // );
+  const filteredPeople = people.filter(person =>
+   person.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+  );
 
   // Handle form submission (Add or Update)
   const handleSubmit = () => {
-    // if (!name.trim() || !phone.trim()) {
-    //   alert('Please fill in both name and phone fields');
-    //   return;
-    // }
+    if (!name.trim() || !phone.trim()) {
+      alert('Please fill in both name and phone fields');
+      return;
+    }
 
     if (editingId) {
-      // TODO: Update existing person
-     // code here...
+        const updatedPeople = people.map(person=>
+        {
+          if(person.id===editingId){
+            person.id = people.length+1;
+            person.name = name;
+            person.phone = phone;
+            return person;
+          }else{
+            return person;
+          }
+        }
+        )
+        setPeople(updatedPeople);
     } else {
-      // TODO: Add new person
-      // code here...
+    
+    const obj ={"id" : peopleData.length+1 , "name":name , "phone":phone};
+    setPeople([...people,obj])
+
     }
 
     // Clear form
@@ -52,19 +65,23 @@ function PeopleManager() {
 
   // Handle edit button click
   const handleEdit = (person) => {
-    // TODO: Handle edit button click
-    // code here...
+    setName(person.name);
+    setPhone(person.phone);
+    setEditingId(person.id);
   };
 
   // Handle delete button click
   const handleDelete = (id) => {
-    // TODO: Handle delete button click
-    // code here...
+    const filtered=people.filter((item)=> item.id !== id);
+    setPeople(filtered);
     
   };
 
   // Handle cancel edit
   const handleCancelEdit = () => {
+    setEditingId(null);
+    setName('');
+    setPhone('');
     // TODO: Handle cancel edit
     // code here...
   };
@@ -75,27 +92,33 @@ function PeopleManager() {
       <div className={styles.leftPanel}>
         <h2 className={styles.title}>
           {/* TODO: Add title here : "Add/Edit Person" */}
+          {editingId ? 'Edit Person' : 'Add Person'}
         </h2>
         
         <input
         className={styles.input}
-          // code here... to add name input
-        />
-
+        value ={name}
+        onChange={(e)=>setName(e.target.value)
+        }
+      />
         <input
         className={styles.input}
-          // code here... to add phone input
+        value={phone}
+      onChange={(e)=>setPhone(e.target.value)
+        }
         />
 
         <button
-          // code here... to add add/update button
+          onClick={handleSubmit}
         >
-         Add or Update
+         {editingId? 'Update':'Add'}
         </button>
 
         {editingId && (
           <button
             className={styles.button}
+            onClick={handleCancelEdit}
+       
            // code here... to add cancel button
           >
             Cancel
@@ -110,6 +133,7 @@ function PeopleManager() {
         {/* Show/Hide Toggle Button */}
         <button
           className={styles.toggleButton}
+          onClick={()=> setShowList(!showList)}
           // code here... to add show/hide toggle button
         >
            {showList ? 'Hide List' : 'Show List'}
@@ -121,7 +145,8 @@ function PeopleManager() {
             type="text"
             className={styles.searchInput}
             placeholder="Search by name..."
-           // code here... to add search input
+            value={searchTerm}
+            onChange={(e)=>setSearchTerm(e.target.value)}
           />
 
         </div>
@@ -129,6 +154,19 @@ function PeopleManager() {
         {/* People List */}
         {showList && (
           <ul className={styles.peopleList}>
+            {filteredPeople.map((list)=> 
+            <li key={list.id} className={styles.personItem}> 
+              < div className={styles.personInfo}> 
+             <h3 className={styles.personName}>{list.name}  </h3>
+             <p className={styles.personPhone}>{list.phone}</p>
+             </div>
+               <div className={styles.personActions}>
+                <button onClick={()=>handleEdit(list)} className={styles.editButton}>Edit</button>
+              <button onClick={()=>handleDelete(list.id)}className={styles.deleteButton}>Delete</button>
+               </div>
+            </li>
+            
+            )}
              {/* TODO: Add your list rendering logic here */}
             {/* 
               Requirements:
