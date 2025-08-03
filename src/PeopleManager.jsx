@@ -13,45 +13,36 @@ function PeopleManager() {
   // State for editing
   const [editingId, setEditingId] = useState(null);
   
-  // State for search
+   // State for search
   const [searchTerm, setSearchTerm] = useState('');
   
   // State for show/hide list
   const [showList, setShowList] = useState(true);
+
 
   // Load initial data
   useEffect(() => {
     setPeople(peopleData);
   }, []);
 
-  // Filter people based on search term
-  const filteredPeople = people.filter(person =>
-    person.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // TODO: Implement search filtering
+  // const filteredPeople = people.filter(person =>
+  //   some code here...
+  // );
 
   // Handle form submission (Add or Update)
   const handleSubmit = () => {
-    if (!name.trim() || !phone.trim()) {
-      alert('Please fill in both name and phone fields');
-      return;
-    }
+    // if (!name.trim() || !phone.trim()) {
+    //   alert('Please fill in both name and phone fields');
+    //   return;
+    // }
 
     if (editingId) {
-      // Update existing person
-      setPeople(people.map(person =>
-        person.id === editingId
-          ? { ...person, name: name.trim(), phone: phone.trim() }
-          : person
-      ));
-      setEditingId(null);
+      // TODO: Update existing person
+     // code here...
     } else {
-      // Add new person
-      const newPerson = {
-        id: Date.now(), // Simple ID generation
-        name: name.trim(),
-        phone: phone.trim()
-      };
-      setPeople([...people, newPerson]);
+      // TODO: Add new person
+      // code here...
     }
 
     // Clear form
@@ -61,67 +52,51 @@ function PeopleManager() {
 
   // Handle edit button click
   const handleEdit = (person) => {
-    setName(person.name);
-    setPhone(person.phone);
-    setEditingId(person.id);
+    // TODO: Handle edit button click
+    // code here...
   };
 
   // Handle delete button click
   const handleDelete = (id) => {
-    if (window.confirm('Are you sure you want to delete this person?')) {
-      setPeople(people.filter(person => person.id !== id));
-      // If we're editing this person, clear the form
-      if (editingId === id) {
-        setName('');
-        setPhone('');
-        setEditingId(null);
-      }
-    }
+    // TODO: Handle delete button click
+    // code here...
+    
   };
 
   // Handle cancel edit
   const handleCancelEdit = () => {
-    setName('');
-    setPhone('');
-    setEditingId(null);
+    // TODO: Handle cancel edit
+    // code here...
   };
-
+  
   return (
     <div className={styles.container}>
       {/* Left Panel - Inputs */}
       <div className={styles.leftPanel}>
         <h2 className={styles.title}>
-          {editingId ? 'Edit Person' : 'Add New Person'}
+          {/* TODO: Add title here : "Add/Edit Person" */}
         </h2>
         
         <input
-          type="text"
-          className={styles.input}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Enter name"
+        className={styles.input}
+          // code here... to add name input
         />
 
         <input
-          type="text"
-          className={styles.input}
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          placeholder="Enter phone number"
+        className={styles.input}
+          // code here... to add phone input
         />
 
         <button
-          className={`${styles.button} ${editingId ? styles.buttonUpdate : ''}`}
-          onClick={handleSubmit}
+          // code here... to add add/update button
         >
-          {editingId ? 'Update' : 'Add'}
+         Add or Update
         </button>
 
         {editingId && (
           <button
             className={styles.button}
-            onClick={handleCancelEdit}
-            style={{ background: '#6c757d' }}
+           // code here... to add cancel button
           >
             Cancel
           </button>
@@ -135,53 +110,34 @@ function PeopleManager() {
         {/* Show/Hide Toggle Button */}
         <button
           className={styles.toggleButton}
-          onClick={() => setShowList(!showList)}
+          // code here... to add show/hide toggle button
         >
-          {showList ? 'Hide List' : 'Show List'}
+           {showList ? 'Hide List' : 'Show List'}
         </button>
 
-        {/* Search Input */}
+         {/* TODO: Implement Search Input */}
         <div className={styles.searchContainer}>
-          <input
+        <input
             type="text"
             className={styles.searchInput}
             placeholder="Search by name..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+           // code here... to add search input
           />
+
         </div>
 
         {/* People List */}
         {showList && (
           <ul className={styles.peopleList}>
-            {filteredPeople.length === 0 ? (
-              <li className={styles.noResults}>
-                {searchTerm ? 'No people found matching your search.' : 'No people in the list.'}
-              </li>
-            ) : (
-              filteredPeople.map(person => (
-                <li key={person.id} className={styles.personItem}>
-                  <div className={styles.personInfo}>
-                    <h3 className={styles.personName}>{person.name}</h3>
-                    <p className={styles.personPhone}>{person.phone}</p>
-                  </div>
-                  <div className={styles.personActions}>
-                    <button
-                      className={styles.editButton}
-                      onClick={() => handleEdit(person)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className={styles.deleteButton}
-                      onClick={() => handleDelete(person.id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </li>
-              ))
-            )}
+             {/* TODO: Add your list rendering logic here */}
+            {/* 
+              Requirements:
+              1. Show "No people found" message when filteredPeople is empty , use noResults class for styling
+              2. Map through filteredPeople to display each person
+              3. Each person should show name and phone
+              4. Add Edit and Delete buttons for each person
+              5. Use the provided CSS classes for styling (personItem, personInfo, personName, personPhone, personActions, editButton, deleteButton)
+            */}
           </ul>
         )}
       </div>
@@ -189,4 +145,4 @@ function PeopleManager() {
   );
 }
 
-export default PeopleManager; 
+export default PeopleManager;
