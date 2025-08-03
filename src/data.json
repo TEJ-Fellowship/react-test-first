@@ -1,7 +1,8 @@
 [
-  { "id": 1, "name": "Sita", "phone": "9800000001" },
-  { "id": 2, "name": "Ram", "phone": "9800000002" },
-  { "id": 3, "name": "Lakshman", "phone": "9800000003" },
-  { "id": 4, "name": "Hanuman", "phone": "9800000004" },
-  { "id": 5, "name": "Bharat", "phone": "9800000005" }
+  { "id": 1, "name": "Bijay", "phone": "9800000001" },
+  { "id": 2, "name": "Swikar", "phone": "9800000002" },
+  { "id": 3, "name": "Ashok", "phone": "9800000003" },
+  { "id": 4, "name": "Binita", "phone": "9800000004" },
+  { "id": 5, "name": "Anjana", "phone": "9800000005" },
+  { "id": 6, "name": "Anu", "phone": "9800000006" }
 ]
