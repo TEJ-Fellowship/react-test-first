@@ -40,16 +40,16 @@ function PeopleManager() {
       // Update existing person
       setPeople(people.map(person =>
         person.id === editingId
-          ? { ...person, name: name.trim(), phone: phone.trim() }
+          ? { ...person, name: name, phone: phone }
           : person
       ));
       setEditingId(null);
     } else {
       // Add new person
       const newPerson = {
-        id: Date.now(), // Simple ID generation
-        name: name.trim(),
-        phone: phone.trim()
+        id: people.length+1,
+        name: name,
+        phone: phone
       };
       setPeople([...people, newPerson]);
     }
